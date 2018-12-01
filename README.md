@@ -1,2 +1,0 @@
-# docs
-Documentações para Ambientes
