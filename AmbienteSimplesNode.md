@@ -11,7 +11,8 @@ Lembrando que, estou logado como root no servidor, por este motivo não utilizei
 - Pm2
 - Editor Nano (pico)
 - Certbot (SSL)
-
+  
+<br />
 
 #### Atualizando ambiente
 
@@ -19,11 +20,13 @@ Lembrando que, estou logado como root no servidor, por este motivo não utilizei
 
 ```apt upgrade -y ```
 
+<br />
 
 #### Instalando o editor de textos "nano"
 
 ```apt install nano -y ```
 
+<br />
 
 #### Instalando o servidor Web Proxy Nginx
 
@@ -31,6 +34,7 @@ Lembrando que, estou logado como root no servidor, por este motivo não utilizei
 
 ```service nginx start```
 
+<br />
 
 #### Instalando o gerenciador de versões do Node o "nvm"
 
@@ -40,6 +44,7 @@ Lembrando que, estou logado como root no servidor, por este motivo não utilizei
 
 ```nvm -v```
 
+<br />
 
 #### Instalando uma versão do Node com o NVM
 
@@ -49,6 +54,7 @@ Lembrando que, estou logado como root no servidor, por este motivo não utilizei
 
 ```node -v```
 
+<br />
 
 #### Instalando o PM2
 
@@ -56,6 +62,7 @@ Lembrando que, estou logado como root no servidor, por este motivo não utilizei
 
 ```pm2 list```
 
+<br />
 
 #### Instalando o Certbot (Let’s Encrypt)
 
@@ -67,25 +74,34 @@ Lembrando que, estou logado como root no servidor, por este motivo não utilizei
 
 ```apt-get install python-certbot-nginx```
 
+<br />
 
 ### Fazendo o deploy de uma aplicação simples
 
 *Abaixo é apenas um exemplo*
 
+
 --- Acesse o diretório de sua conta e faça o clone da sua aplicação, no meu caso eu uso o git
+
 
 ```git clone https://github.com/fhlemes/docs.git```
 
+
 --- Após realizar o clone do app, acesse o diretório que foi clonado e rode o comando abaixo
+
 
 ```npm install```
 
+
 --- Instalado as depêndencias do projeto, iremos utilizar o pm2 para gerenciar o deploy da aplicação, vamos rodar comando
+
 
 ```pm2 --name app start index.js```
 
+
 --- Agora vamos a parte legal, que é do Nginx. Navegue até o diretório ***/nginx/sites-enabled/*** e crie um arquivo que irá
 ter as configurações de sua aplicação
+
 
 ```cd /etc/nginx/sites-enabled/``` [aperte enter]
 
@@ -94,6 +110,7 @@ ter as configurações de sua aplicação
 
 
 ```nano meuapp```
+
 
 --- Com o arquivo ***meuapp** aberto, vou utilizar o seguinte código abaixo. (_Lembrando que eu ajustei e reduzi o código, em outro estará diferente_)
 
@@ -116,26 +133,36 @@ server {
 }
 ```
 
+
 --- Feito os ajustes no arquivo de configuração, aperte a tecla ***CTRL + O*** para salvar e ***CTRL + W*** para sair.
+
 
 --- Agora vamos validar se o arquivo criado não possui erros, para isso, rode o comando
 
+
 ```nginx -t```
+
 
 [ _nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful_ ]
 
 --- Estando tudo certo e não apresentado erros, rode o comando para o Nginx salvar as configurações e reinicar
 
+
 ```nginx -s reload```
+
 
 --- Agora vamos instalar o certificado SSL, para isso o rode o comando abaixo
 
+
 ```certbot -d api.exemplo.com.br```
+
 
 [Irá ser solicitado algumas informações, como email, pais, e se você deseja realizar o direcionamento automático para https ]
 
+
 --- Instalado o certificado SSL, o seu arquivo de configuração do app, estará da seguinte forma
+
 
 ```
 server {
@@ -178,5 +205,7 @@ server {
 }
 
 ```
+
+<br />
 
 #### Pronto agora temos o deploy de uma api em node com certificado SSL habilitado :D
