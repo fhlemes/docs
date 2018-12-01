@@ -190,7 +190,7 @@ server {
 
 server {
 
-  if ($host = www.api.exemplo.com.br) {
+  if ($host =api.exemplo.com.br) {
       return 301 https://$host$request_uri;
   } # managed by Certbot
 
@@ -198,7 +198,7 @@ server {
       return 301 https://$host$request_uri;
   } # managed by Certbot
 
-  server_name www.api.exemplo.com.br api.exemplo.com.br;
+  server_name api.exemplo.com.br;
   listen 80;
   return 404; # managed by Certbot
 
